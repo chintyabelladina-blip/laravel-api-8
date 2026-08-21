@@ -11,9 +11,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->paginate(10);
+         $products = Product::with('kategori')->latest()->paginate(10);
         return response()->json(
-            new ProductCollection($products),
+        ProductResource::collection($products),
             Response::HTTP_OK
         );
     }
